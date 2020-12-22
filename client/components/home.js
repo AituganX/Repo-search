@@ -1,15 +1,20 @@
 import React from 'react'
-import Header from './header'
+import { Switch, Route } from 'react-router-dom'
+import Head from './head'
+
+import Main from './main'
+import Repolist from './repolist'
+import Readme from './readme'
 
 const Home = () => {
   return (
     <div>
-      <Header />
-      <div className="flex items-center justify-center h-screen">
-        <div className="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
-          {/* add your routes here */}
-        </div>
-      </div>
+      <Head title="Hello" />
+      <Switch>
+        <Route exact path="/" component={() => <Main />} />
+        <Route exact path="/:userName" component={() => <Repolist />} />
+        <Route exact path="/:userName/:repositoryName" component={() => <Readme />} />
+      </Switch>
     </div>
   )
 }
